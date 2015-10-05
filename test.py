@@ -12,12 +12,11 @@ def main(repo):
     to the repo arguments and runs frigg-runner inside the cloned
     folder.
     """
-    print(subprocess.call(['docker', 'build', '-t', 'test-base', '.']))
-    with Docker('test-base') as docker:
+    print(subprocess.call(['docker', 'build', '-t', 'test-dind', '.']))
+    with Docker(image="test-dind") as docker:
         print(docker.run('git clone {repo} cloned'.format(repo=repo)).out)
         print(docker.run('pip install frigg-runner').out)
         print(docker.run('frigg', working_directory='cloned').out)
 
 if __name__ == '__main__':
     main()
-

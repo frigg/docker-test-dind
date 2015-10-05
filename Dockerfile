@@ -6,9 +6,16 @@ RUN apk add --update \
 		e2fsprogs \
 		iptables \
 		xz \
-	&& rm -rf /var/cache/apk/*
-
-RUN apk add --update git
+		musl \
+		bash \
+		python \
+		python3 \
+		python-dev \
+		py-pip \
+		build-base \
+		git \
+	    && pip install -U virtualenv pip \
+        && rm -rf /var/cache/apk/*
 
 # TODO aufs-tools
 
@@ -24,4 +31,3 @@ EXPOSE 2375
 
 ENTRYPOINT ["dockerd-entrypoint.sh"]
 CMD []
-
