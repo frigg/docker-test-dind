@@ -17,6 +17,8 @@ RUN apk add --update \
 	    && pip install -U virtualenv pip \
         && rm -rf /var/cache/apk/*
 
+RUN apk add --update docker
+
 # TODO aufs-tools
 
 ENV DIND_COMMIT b8bed8832b77a478360ae946a69dab5e922b194e
